@@ -1,3 +1,21 @@
+<?php
+
+session_start();
+
+require_once '../../config/Database.php';
+
+$db = new Database;
+
+if (isset($_POST['submit'])) {
+    $query = "SELECT * FROM kasir WHERE username ='" . $_POST['username'] . "'";
+    $dataKasir = $db->ambil_data($query);
+    if($dataKasir != null) {
+        $_SESSION['login'] = $dataKasir;
+    }
+}
+
+?>
+
 <?php require_once '../../layout/header-login.php' ?>
 
 <div class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
@@ -10,7 +28,7 @@
                             <img src="../../assets/image/logos/dark-logo.svg" width="180" alt="">
                         </div>
                         <p class="text-center">Your Social Campaigns</p>
-                        <form action="/config/Database.php" method="post">
+                        <form action="" method="post">
                             <div class="mb-3">
                                 <label for="username" class="form-label">Username</label>
                                 <input type="text" class="form-control" id="username" name="username" required autocomplete="off">
