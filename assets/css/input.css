@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.invalid {
+    @apply border-red-500 bg-red-100 focus:border-red-500 focus:bg-red-100;
+}
+
+.invalid + .text-invalid {
+    @apply text-red-500;
+}

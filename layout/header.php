@@ -7,6 +7,9 @@
     <title>Modernize Free</title>
     <link rel="shortcut icon" type="image/png" href="/assets/image/logos/favicon.png" />
     <link rel="stylesheet" href="/assets/css/styles.min.css" />
+
+    <!-- tailwindcss -->
+    <link rel="stylesheet" href="/assets/css/output.css">
 </head>
 
 <body>
