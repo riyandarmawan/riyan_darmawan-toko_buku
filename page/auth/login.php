@@ -1,6 +1,8 @@
 <?php
 
-if(session_id()) session_start();
+require_once '../../config/Flasher.php';
+
+$flasher = new Flasher;
 
 if (isset($_POST['submit'])) {
     require_once '../../controller/loginController.php';
@@ -27,13 +29,12 @@ if (isset($_POST['submit'])) {
                         <form action="" method="post">
                             <div class="mb-3">
                                 <label for="username" class="form-label">Username</label>
-                                <input type="text" class="form-control <?= isset($_SESSION['username']) ? 'invalid' : '' ?>" id="username" name="username" required autocomplete="off" autofocus>
-                                <p class="text-invalid <?= isset($_SESSION['username']) ? '' : 'hidden' ?>">* <?= isset($_SESSION['username']) ? $_SESSION['username'] : '' ?></p>
+                                <input type="text" class="form-control <?= isset($_SESSION['alert']) ? 'invalid' : '' ?>" id="username" name="username" required autocomplete="off" autofocus>
+                                <?= $flasher->getAlert() ?>
                             </div>
                             <div class="mb-4">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control <?= isset($_SESSION['password']) ? 'invalid' : '' ?>" id="password" name="password" required autocomplete="off">
-                                <p class="text-invalid <?= isset($_SESSION['password']) ? '' : 'hidden' ?>">* <?= isset($_SESSION['password']) ? $_SESSION['password'] : '' ?></p>
+                                <input type="password" class="form-control" id="password" name="password" required autocomplete="off">
                             </div>
                             <button type="submit" name="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Login</button>
                         </form>
@@ -45,10 +46,3 @@ if (isset($_POST['submit'])) {
 </div>
 
 <?php require_once '../../layout/footer.php' ?>
-
-<?php
-// if (isset($_SESSION['username']) || isset($_SESSION['password'])) {
-//     unset($_SESSION['username']);
-//     unset($_SESSION['password']);
-// }
-?>

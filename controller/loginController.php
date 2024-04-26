@@ -1,6 +1,7 @@
 <?php
 
-require_once '../../config/Database.php';
+require_once '../../config/database.php';
+require_once '../../config/Flasher.php';
 
 class loginController
 {
@@ -9,16 +10,17 @@ class loginController
         session_start();
 
         $db = new Database;
+        $flasher = new Flasher;
 
         $query = "SELECT * FROM kasir WHERE username = '" . $_POST['username'] . "'";
         $dataKasir = $db->ambil_data($query);
 
-        var_dump($dataKasir);
-
         if ($dataKasir != null) {
             $_SESSION['login'] = $dataKasir;
+            header('Location: /');
+            exit;
         } else {
-            $_SESSION['username'] = "Username tidak terdaftar";
+            $flasher->setAlert("Username tidak terdaftar");
             header('Location: /page/auth/login.php');
             exit;
         }
