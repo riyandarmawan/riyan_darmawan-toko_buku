@@ -1,9 +1,5 @@
 <?php
 
-require_once '../../config/Flasher.php';
-
-$flasher = new Flasher;
-
 if (isset($_POST['submit'])) {
     require_once '../../controller/loginController.php';
 
@@ -29,12 +25,20 @@ if (isset($_POST['submit'])) {
                         <form action="" method="post">
                             <div class="mb-3">
                                 <label for="username" class="form-label">Username</label>
-                                <input type="text" class="form-control <?= isset($_SESSION['alert']) ? 'invalid' : '' ?>" id="username" name="username" required autocomplete="off" autofocus>
-                                <?= $flasher->getAlert() ?>
+                                <input type="text" class="form-control <?= isset($_SESSION['username']) ? 'invalid' : '' ?>" id="username" name="username"  autocomplete="off" autofocus value="<?= isset($_SESSION['old']['username']) ?  $_SESSION['old']['username'] : '' ?>">
+                                <p class="text-invalid mt-2">* <?php 
+                                    echo isset($_SESSION['username']) ? $_SESSION['username'] : '';
+                                    unset($_SESSION['old']['username']);
+                                    unset($_SESSION['username']);
+                                    ?></p>
                             </div>
                             <div class="mb-4">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" required autocomplete="off">
+                                <input type="password" class="form-control <?= isset($_SESSION['password']) ? 'invalid' : '' ?>" id="password" name="password"  autocomplete="off">
+                                <p class="text-invalid mt-2">* <?php
+                                    echo isset($_SESSION['password']) ? $_SESSION['password'] : '';
+                                    unset($_SESSION['password']);
+                                    ?></p>
                             </div>
                             <button type="submit" name="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Login</button>
                         </form>

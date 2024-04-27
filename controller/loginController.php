@@ -1,7 +1,6 @@
 <?php
 
-require_once '../../config/database.php';
-require_once '../../config/Flasher.php';
+require_once '../../config/Database.php';
 
 class loginController
 {
@@ -10,19 +9,25 @@ class loginController
         session_start();
 
         $db = new Database;
-        $flasher = new Flasher;
 
         $query = "SELECT * FROM kasir WHERE username = '" . $_POST['username'] . "'";
         $dataKasir = $db->ambil_data($query);
 
-        if ($dataKasir != null) {
+        if ($dataKasir != null && $dataKasir['password'] == $_POST['password']) {
             $_SESSION['login'] = $dataKasir;
             header('Location: /');
             exit;
+        } else if ($dataKasir != null && $dataKasir['password'] != $_POST['password']) {
+            $_SESSION['old']['username'] = $_POST['username'];
+            $_SESSION['password'] = 'Password tidak sesuai';
         } else {
-            $flasher->setAlert("Username tidak terdaftar");
-            header('Location: /page/auth/login.php');
-            exit;
+            $_SESSION['username'] = 'Username tidak terdaftar';
+            if ($_POST['username'] == '') {
+                $_SESSION['username'] = 'Username harus diisi';
+            }
+            if ($_POST['password'] == '') {
+                $_SESSION['password'] = 'Password harus diisi';
+            }
         }
     }
 }

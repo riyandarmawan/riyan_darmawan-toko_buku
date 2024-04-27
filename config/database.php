@@ -30,10 +30,8 @@ class Database
 
         return $data;
     }
-
-    public function login() {
-        $table = 'kasir';
-
-        $this->ambil_data("SELECT * FROM $table WHERE username = ". $_POST['username']);
+    
+    public function modifikasi($query) {
+        
     }
 }

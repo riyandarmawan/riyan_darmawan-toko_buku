@@ -6,6 +6,10 @@
     @apply border-red-500 bg-red-100 focus:border-red-500 focus:bg-red-100;
 }
 
+.text-invalid {
+    @apply hidden;
+}
+
 .invalid + .text-invalid {
-    @apply text-red-500;
+    @apply text-red-500 block;
 }
