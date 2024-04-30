@@ -3,13 +3,24 @@ require_once '../../config/config.php';
 
 require_once '../../controller/bukuController.php';
 
-$buku = new bukuController;
+$booksModel = new bukuController;
+
+$books = $booksModel->getBuku();
+
+if (isset($_GET['keyword'])) {
+    $books = $booksModel->getCari();
+}
+
+$halaman = isset($_GET['halaman']) ? $_GET['halaman'] : 1;
+$maju = $halaman + 1;
+$mundur = $halaman - 1;
+
 ?>
 
 <?php require_once '../../layout/header.php'; ?>
 
 <div class="input-group mb-3 w-64 float-right">
-    <form action="" class="flex">
+    <form action="?halaman=1" method="get" class="flex">
         <input type="text" class="form-control" placeholder="Cari buku" aria-label="Recipient's " aria-describedby="button-addon2" id="keyword" name="keyword">
         <button class="btn btn-outline-secondary" type="submit" id="button-addon2" name="submit">Cari</button>
     </form>
@@ -29,16 +40,16 @@ $buku = new bukuController;
     </thead>
     <tbody>
         <?php
-            $i = 1;
-            foreach ($buku->getBuku() as $buku) :
+        $i = $halaman > 1 ? ($halaman - 1) * 10 + 1 : 1;
+        foreach ($books as $book) :
         ?>
             <tr>
                 <th scope="row"><?= $i ?></th>
-                <td><?= $buku['judul'] ?></td>
-                <td><?= $buku['penulis'] ?></td>
-                <td><?= $buku['penerbit'] ?></td>
-                <td><?= $buku['stok'] ?></td>
-                <td><?= $buku['harga_jual'] ?></td>
+                <td><?= $book['judul'] ?></td>
+                <td><?= $book['penulis'] ?></td>
+                <td><?= $book['penerbit'] ?></td>
+                <td><?= $book['stok'] ?></td>
+                <td><?= $book['harga_jual'] ?></td>
                 <td>
                     <a href="#" class="text-success">Edit</a>
                     <a href="#" class="text-danger">Hapus</a>
@@ -46,15 +57,15 @@ $buku = new bukuController;
             </tr>
         <?php
             $i++;
-            endforeach;
+        endforeach; 
         ?>
     </tbody>
 </table>
 
 <nav aria-label="Page navigation example" class="float-right">
     <ul class="pagination">
-        <li class="page-item"><a class="page-link disabled" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        <li class="page-item"><a class="page-link <?= $halaman > 1 ? 'disabled' : '' ?>" href="?halaman=<?= $mundur ?>">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="?halaman=<?= $maju ?>">Next</a></li>
     </ul>
 </nav>
 
