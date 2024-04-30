@@ -6,9 +6,9 @@ class bukuController
 {
     protected $table = 'buku';
     protected $cari;
-    protected $offset = 10;
+    public $offset = 10;
     protected $first = 0;
-    protected $totalBooks;
+    public $totalBooks;
 
     public function getBuku()
     {
@@ -33,7 +33,7 @@ class bukuController
     {
         $db = new Database;
 
-        $this->cari = $_POST['keyword'];
+        $this->cari = $_GET['keyword'];
 
         $query = "SELECT * FROM $this->table WHERE 
                     judul LIKE '%$this->cari%' OR 

@@ -1,4 +1,11 @@
 <?php
+
+session_start();
+
+if (!isset($_SESSION['login'])) {
+    header('Location: /page/auth/login.php');
+}
+
 require_once '../../config/config.php';
 
 require_once '../../controller/bukuController.php';
@@ -21,8 +28,8 @@ $mundur = $halaman - 1;
 
 <div class="input-group mb-3 w-64 float-right">
     <form action="?halaman=1" method="get" class="flex">
-        <input type="text" class="form-control" placeholder="Cari buku" aria-label="Recipient's " aria-describedby="button-addon2" id="keyword" name="keyword">
-        <button class="btn btn-outline-secondary" type="submit" id="button-addon2" name="submit">Cari</button>
+        <input type="text" class="form-control" placeholder="Cari buku" aria-label="Recipient's " aria-describedby="button-addon2" id="keyword" name="keyword" autofocus>
+        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
     </form>
 </div>
 
@@ -57,16 +64,21 @@ $mundur = $halaman - 1;
             </tr>
         <?php
             $i++;
-        endforeach; 
+        endforeach;
         ?>
     </tbody>
 </table>
 
 <nav aria-label="Page navigation example" class="float-right">
     <ul class="pagination">
-        <li class="page-item"><a class="page-link <?= $halaman > 1 ? 'disabled' : '' ?>" href="?halaman=<?= $mundur ?>">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="?halaman=<?= $maju ?>">Next</a></li>
+        <li class="page-item">
+            <a class="page-link <?= $halaman == 1 ? 'disabled' : '' ?>" href="<?= BASEURL . '/page/buku' . (!empty($_GET['keyword']) ? '?keyword=' . $_GET['keyword'] . '&' : '?') ?>halaman=<?= $mundur ?>">Previous</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link <?= ($halaman * $booksModel->offset) >= $booksModel->totalBooks ? 'disabled' : '' ?>" href="<?= BASEURL . '/page/buku' . (!empty($_GET['keyword']) ? '?keyword=' . $_GET['keyword'] . '&' : '?') ?>halaman=<?= $maju ?>">Next</a>
+        </li>
     </ul>
 </nav>
+
 
 <?php require_once '../../layout/footer.php'; ?>
