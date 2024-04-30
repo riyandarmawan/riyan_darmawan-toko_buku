@@ -18,11 +18,23 @@
                     <span class="hide-menu">Home</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/" aria-expanded="false">
+                    <a class="sidebar-link" href="<?= BASEURL ?>/" aria-expanded="false">
                         <span>
                             <i class="ti ti-layout-dashboard"></i>
                         </span>
                         <span class="hide-menu">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">Page</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="<?= BASEURL ?>/page/buku" aria-expanded="false">
+                        <span>
+                            <i data-feather="book"></i>
+                        </span>
+                        <span class="hide-menu">Buku</span>
                     </a>
                 </li>
             </ul>

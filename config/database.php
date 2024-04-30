@@ -15,8 +15,23 @@ class Database
             die('Connection failed : ' . mysqli_connect_error());
         }
     }
+    public function ambilData($query)
+    {
+        $this->koneksi();
 
-    public function ambil_data($query) {
+        $result = $this->conn->query($query);
+
+        // cek jika query berhasil dijalankan
+        if ($result === false) {
+            die('Gagal mengeksekusi query : ' . $this->conn->error);
+        }
+
+        $data =  $result->fetch_assoc();
+
+        return $data;
+    }
+
+    public function ambilSemuaData($query) {
         $this->koneksi();
 
         $result = $this->conn->query($query);
@@ -26,7 +41,11 @@ class Database
             die('Gagal mengeksekusi query : ' . $this->conn->error);
         }
 
-        $data = $result->fetch_assoc();
+        $data = [];
+
+        while($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
 
         return $data;
     }

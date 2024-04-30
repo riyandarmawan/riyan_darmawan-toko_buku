@@ -11,7 +11,7 @@ class loginController
         $db = new Database;
 
         $query = "SELECT * FROM kasir WHERE username = '" . $_POST['username'] . "'";
-        $dataKasir = $db->ambil_data($query);
+        $dataKasir = $db->ambilData($query);
 
         if ($dataKasir != null && $dataKasir['password'] == $_POST['password']) {
             $_SESSION['login'] = $dataKasir;

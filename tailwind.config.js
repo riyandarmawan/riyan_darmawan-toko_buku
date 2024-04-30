@@ -2,7 +2,7 @@
 module.exports = {
   content: {
     relative: true,
-    files: ["./page/**/*.{php, js}"],
+    files: ["./page/**/*.{php, js}", "./layout/**/*.{php, js}"],
   },
   theme: {
     extend: {},
