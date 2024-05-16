@@ -37,6 +37,14 @@
                         <span class="hide-menu">Buku</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="<?= BASEURL ?>/page/penjualan" aria-expanded="false">
+                        <span>
+                            <i data-feather="shopping-bag"></i>
+                        </span>
+                        <span class="hide-menu">Penjualan</span>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->
