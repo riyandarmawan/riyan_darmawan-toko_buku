@@ -2,7 +2,7 @@
 
 require_once '../../config/Database.php';
 
-class loginController
+class LoginController
 {
     public function login()
     {

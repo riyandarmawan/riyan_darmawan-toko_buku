@@ -2,7 +2,7 @@
 
 require_once '../../config/Database.php';
 
-class bukuController
+class BukuController
 {
     protected $table = 'buku';
     protected $cari;

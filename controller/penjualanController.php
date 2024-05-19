@@ -2,7 +2,7 @@
 
 require_once '../../config/Database.php';
 
-class penjualanController {
+class PenjualanController {
     private $table = 'penjualan';
     private $foreignKey = 'buku';
 

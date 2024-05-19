@@ -8,9 +8,9 @@ if (!isset($_SESSION['login'])) {
 
 require_once '../../config/config.php';
 
-require_once '../../controller/bukuController.php';
+require_once '../../controller/BukuController.php';
 
-$booksModel = new bukuController;
+$booksModel = new BukuController;
 
 $books = $booksModel->getBuku();
 

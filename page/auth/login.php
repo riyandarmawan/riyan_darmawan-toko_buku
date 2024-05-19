@@ -1,9 +1,9 @@
 <?php
 
 if (isset($_POST['submit'])) {
-    require_once '../../controller/loginController.php';
+    require_once '../../controller/LoginController.php';
 
-    $loginModel = new loginController;
+    $loginModel = new LoginController;
 
     $loginModel->login();
 }
@@ -25,20 +25,20 @@ if (isset($_POST['submit'])) {
                         <form action="" method="post">
                             <div class="mb-3">
                                 <label for="username" class="form-label">Username</label>
-                                <input type="text" class="form-control <?= isset($_SESSION['username']) ? 'invalid' : '' ?>" id="username" name="username"  autocomplete="off" autofocus value="<?= isset($_SESSION['old']['username']) ?  $_SESSION['old']['username'] : '' ?>">
-                                <p class="text-invalid mt-2">* <?php 
-                                    echo isset($_SESSION['username']) ? $_SESSION['username'] : '';
-                                    unset($_SESSION['old']['username']);
-                                    unset($_SESSION['username']);
-                                    ?></p>
+                                <input type="text" class="form-control <?= isset($_SESSION['username']) ? 'invalid' : '' ?>" id="username" name="username" autocomplete="off" autofocus value="<?= isset($_SESSION['old']['username']) ?  $_SESSION['old']['username'] : '' ?>">
+                                <p class="text-invalid mt-2">* <?php
+                                                                echo isset($_SESSION['username']) ? $_SESSION['username'] : '';
+                                                                unset($_SESSION['old']['username']);
+                                                                unset($_SESSION['username']);
+                                                                ?></p>
                             </div>
                             <div class="mb-4">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control <?= isset($_SESSION['password']) ? 'invalid' : '' ?>" id="password" name="password"  autocomplete="off">
+                                <input type="password" class="form-control <?= isset($_SESSION['password']) ? 'invalid' : '' ?>" id="password" name="password" autocomplete="off">
                                 <p class="text-invalid mt-2">* <?php
-                                    echo isset($_SESSION['password']) ? $_SESSION['password'] : '';
-                                    unset($_SESSION['password']);
-                                    ?></p>
+                                                                echo isset($_SESSION['password']) ? $_SESSION['password'] : '';
+                                                                unset($_SESSION['password']);
+                                                                ?></p>
                             </div>
                             <button type="submit" name="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Login</button>
                         </form>
