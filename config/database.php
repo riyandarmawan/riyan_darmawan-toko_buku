@@ -51,6 +51,18 @@ class Database
     }
     
     public function modifikasi($query) {
-        
+        $this->koneksi();
+
+        $this->conn->query($query);
+
+        return true;
     }
+
+    public function lastInsertId()
+    {
+        $lastInsertId = mysqli_insert_id($this->conn);
+
+        return $lastInsertId;
+    }
+
 }
