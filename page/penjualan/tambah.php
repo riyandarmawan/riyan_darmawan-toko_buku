@@ -10,46 +10,59 @@ require_once '../../config/config.php';
 
 require_once '../../controller/PenjualanController.php';
 
-$penjualan = new PenjualanController();
-
-$books = $penjualan->getBuku();
-
-if (isset($_POST['submit'])) {
-    $penjualan->insertPenjualan();
-}
-
 ?>
 
 <?php require_once '../../layout/header.php'; ?>
 
-<div class="border rounded-md px-10 py-4 w-[40rem] mx-auto">
+<div class="border rounded-md px-10 py-4 w-[70rem] mx-auto">
     <form action="" method="post">
-        <div class="books-field">
-            <div class="w-full flex justify-between choose-book-container">
-                <div class="mb-3 flex gap-3 w-1/3">
-                    <label for="bukuId[]" class="col-sm-2 col-form-label">Buku</label>
-                    <div class="col-sm-8">
-                        <select class="form-select" aria-label="Default select example" name="bukuId[]">
-                            <?php foreach ($books as $book) : ?>
-                                <option value="<?= $book['id_buku'] ?>"><?= $book['judul'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
+        <div class="flex justify-between mb-4">
+            <!-- tanggal -->
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                    <label for="date" class="col-form-label">Tanggal</label>
                 </div>
-                <div class="row mb-3">
-                    <label for="jumlah[]" class="col-sm-3 col-form-label">Jumlah</label>
-                    <div class="col-sm-4">
-                        <input type="number" name="jumlah[]" min="1" value="1" class="form-control quantity-book">
-                    </div>
+                <div class="col-auto">
+                    <input type="date" id="date" name="date" value="<?= date('Y-m-d') ?>" readonly class="form-control">
+                </div>
+            </div>
+
+            <!-- total -->
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                    <label for="total" class="col-form-label">Total</label>
+                </div>
+                <div class="col-auto">
+                    <textarea type="text" id="total" name="total" readonly rows="2" class="form-control resize-none"></textarea>
                 </div>
             </div>
         </div>
-        <div class="w-full">
-            <button type="button" id="add-book" class="btn btn-primary">+ Tambah buku</button>
-        </div>
-        <div class="w-full flex justify-center">
-            <button type="submit" name="submit" class="btn btn-primary">Tambah Penjualan</button>
-        </div>
+
+        <!-- input for books -->
+        <table class="table table-sm table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Kode Buku</th>
+                    <th>Judul</th>
+                    <th>Penerbit</th>
+                    <th>Harga</th>
+                    <th>Jumlah</th>
+                    <th>Diskon</th>
+                    <th>SubTotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" name="id" id="id" class="form-control"></td>
+                    <td><input type="text" name="title" id="title" readonly class="form-control"></td>
+                    <td><input type="text" name="publisher" id="publisher" readonly class="form-control"></td>
+                    <td><input type="text" name="price" id="price" readonly class="form-control"></td>
+                    <td><input type="text" name="amount" id="amount" class="form-control"></td>
+                    <td><input type="text" name="discount" id="discount" readonly class="form-control"></td>
+                    <td><input type="text" name="subTotal" id="subTotal" readonly class="form-control"></td>
+                </tr>
+            </tbody>
+        </table>
     </form>
 </div>
 
