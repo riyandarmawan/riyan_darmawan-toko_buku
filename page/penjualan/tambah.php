@@ -48,7 +48,7 @@ require_once '../../controller/PenjualanController.php';
                     <th>Harga</th>
                     <th>Jumlah</th>
                     <th>Diskon</th>
-                    <th>SubTotal</th>
+                    <th>Sub Total</th>
                 </tr>
             </thead>
             <tbody>
@@ -57,7 +57,7 @@ require_once '../../controller/PenjualanController.php';
                     <td><input type="text" name="title[]" id="title" readonly class="form-control"></td>
                     <td><input type="text" name="publisher[]" id="publisher" readonly class="form-control"></td>
                     <td><input type="text" name="price[]" id="price" readonly class="form-control"></td>
-                    <td><input type="text" name="amount[]" id="amount" class="form-control"></td>
+                    <td><input type="number" name="amount[]" id="amount" min="1" value="1" class="form-control"></td>
                     <td><input type="text" name="discount[]" id="discount" readonly class="form-control"></td>
                     <td><input type="text" name="subTotal[]" id="subTotal" readonly class="form-control"></td>
                 </tr>
