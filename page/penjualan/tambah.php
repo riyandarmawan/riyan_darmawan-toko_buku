@@ -10,6 +10,10 @@ require_once '../../config/config.php';
 
 require_once '../../controller/PenjualanController.php';
 
+$penjualan = new PenjualanController();
+
+$books = $penjualan->getBooks();
+
 ?>
 
 <?php require_once '../../layout/header.php'; ?>
@@ -52,7 +56,7 @@ require_once '../../controller/PenjualanController.php';
                 </tr>
             </thead>
             <tbody>
-                <tr id="input-row-book">
+                <tr class="input-row-book">
                     <td><input type="text" name="id[]" id="id" class="form-control"></td>
                     <td><input type="text" name="title[]" id="title" readonly class="form-control"></td>
                     <td><input type="text" name="publisher[]" id="publisher" readonly class="form-control"></td>
@@ -63,10 +67,55 @@ require_once '../../controller/PenjualanController.php';
                 </tr>
             </tbody>
         </table>
-        <button type="button" id="add-book" class="btn btn-primary">Tambah Buku</button>
+        <!-- <button type="button" id="add-book" class="btn btn-primary">Tambah Buku</button> -->
     </form>
 </div>
 
-<script src="../../assets/js/tambahPenjualan.js"></script>
+<!-- <script src="../../assets/js/tambahPenjualan.js"></script> -->
+
+<script>
+    // // define the variable for element in html
+    // const addBook = document.getElementById("add-book");
+    // const inputRowBook = document.querySelectorAll(".input-row-book");
+
+    // // add event click to button
+    // addBook.addEventListener("click", () => {
+    //     // duplicate the row to their parent
+    //     inputRowBook[0].parentElement.appendChild(
+    //         inputRowBook[inputRowBook.length - 1].cloneNode(true),
+    //     );
+    // });
+
+    let books = <?= json_encode($books) ?>
+
+    // // method 1 = akses id secara langsung
+    // id.onkeyup = () => {
+    //     alert("halo");
+    // }
+
+    // method 2
+    // define id
+    const id = document.getElementById("id");
+    const title = document.getElementById('title');
+    const publisher = document.getElementById('publisher');
+    const price = document.getElementById('price');
+    const amount = document.getElementById('amount');
+    const discount = document.getElementById('discount');
+    const subTotal = document.getElementById('subTotal');
+
+    //   set event to the input box
+    id.addEventListener("keyup", () => {
+        // find the data from database using value from the input
+        // simpan id yang diinput oleh user
+        let id_buku = id.value;
+        // cari index buku dari id yang dimasukkan
+        let bookIndex = books.findIndex(e => e.id_buku == id_buku);
+
+        title.value = books[bookIndex].judul;
+        publisher.value = books[bookIndex].penerbit;
+        price.value = books[bookIndex].harga_jual;
+        discount.value = books[bookIndex].diskon;
+    });
+</script>
 
 <?php require_once '../../layout/footer.php'; ?>
