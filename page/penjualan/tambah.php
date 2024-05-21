@@ -14,7 +14,7 @@ require_once '../../controller/PenjualanController.php';
 
 <?php require_once '../../layout/header.php'; ?>
 
-<div class="border rounded-md px-10 py-4 w-[70rem] mx-auto">
+<div class="border rounded-md px-10 py-4 w-[70rem] h-[50rem] overflow-y-scroll mx-auto">
     <form action="" method="post">
         <div class="flex justify-between mb-4">
             <!-- tanggal -->
@@ -52,17 +52,18 @@ require_once '../../controller/PenjualanController.php';
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><input type="text" name="id" id="id" class="form-control"></td>
-                    <td><input type="text" name="title" id="title" readonly class="form-control"></td>
-                    <td><input type="text" name="publisher" id="publisher" readonly class="form-control"></td>
-                    <td><input type="text" name="price" id="price" readonly class="form-control"></td>
-                    <td><input type="text" name="amount" id="amount" class="form-control"></td>
-                    <td><input type="text" name="discount" id="discount" readonly class="form-control"></td>
-                    <td><input type="text" name="subTotal" id="subTotal" readonly class="form-control"></td>
+                <tr id="input-row-book">
+                    <td><input type="text" name="id[]" id="id" class="form-control"></td>
+                    <td><input type="text" name="title[]" id="title" readonly class="form-control"></td>
+                    <td><input type="text" name="publisher[]" id="publisher" readonly class="form-control"></td>
+                    <td><input type="text" name="price[]" id="price" readonly class="form-control"></td>
+                    <td><input type="text" name="amount[]" id="amount" class="form-control"></td>
+                    <td><input type="text" name="discount[]" id="discount" readonly class="form-control"></td>
+                    <td><input type="text" name="subTotal[]" id="subTotal" readonly class="form-control"></td>
                 </tr>
             </tbody>
         </table>
+        <button type="button" id="add-book" class="btn btn-primary">Tambah Buku</button>
     </form>
 </div>
 
