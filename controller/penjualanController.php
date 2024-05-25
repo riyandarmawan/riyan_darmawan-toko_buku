@@ -15,4 +15,18 @@ class PenjualanController
 
         return $books;
     }
+
+    public function insertPenjualan() {
+        $database = new Database();
+
+        // $ids = $_POST['id'];
+        // $titles = $_POST['title'];
+        // $publishers = $_POST['publisher'];
+        // $prices = $_POST['price'];
+        // $amounts = $_POST['amount'];
+        // $discounts = $_POST['discount'];
+        // $subTotals = $_
+
+        // $query = "INSERT INTO penjualan";
+    }
 }
