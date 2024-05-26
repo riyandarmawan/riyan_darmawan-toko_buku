@@ -49,20 +49,23 @@ class Database
 
         return $data;
     }
-    
-    public function modifikasi($query) {
+
+    public function modifikasi($query)
+    {
         $this->koneksi();
 
-        $this->conn->query($query);
-
-        return true;
+        if ($this->conn->query($query) === TRUE) {
+            // Query executed successfully
+            return true;
+        } else {
+            // Query execution failed
+            die('Error executing query: ' . $this->conn->error);
+        }
     }
+
 
     public function lastInsertId()
     {
-        $lastInsertId = mysqli_insert_id($this->conn);
-
-        return $lastInsertId;
-    }
-
+        return mysqli_insert_id($this->conn);
+    }   
 }

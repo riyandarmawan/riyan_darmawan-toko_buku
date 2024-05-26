@@ -6,7 +6,8 @@ class PenjualanController
 {
     private $table = 'penjualan';
 
-    public function getBooks() {
+    public function getBooks()
+    {
         $database = new Database();
 
         $query = "SELECT * FROM buku";
@@ -16,17 +17,30 @@ class PenjualanController
         return $books;
     }
 
-    public function insertPenjualan() {
+    public function insertPenjualan()
+    {
         $database = new Database();
 
-        // $ids = $_POST['id'];
-        // $titles = $_POST['title'];
-        // $publishers = $_POST['publisher'];
-        // $prices = $_POST['price'];
-        // $amounts = $_POST['amount'];
-        // $discounts = $_POST['discount'];
-        // $subTotals = $_
+        $idKasir = $_SESSION['login']['id_kasir'];
 
-        // $query = "INSERT INTO penjualan";
+        $tanggal = date('Y-m-d');
+
+        $total = $_POST['total'];
+
+        $query = "INSERT INTO penjualan(id_kasir, tanggal, total) VALUES($idKasir, '$tanggal', $total)";
+
+        $database->modifikasi($query);
+
+        $lastIdPenjualan = $database->lastInsertId();
+        $id = $_POST['id'];
+        $jumlah = $_POST['amount'];
+
+        for($i = 0; $i < count($jumlah); $i++) {
+            $query = "INSERT INTO detail_penjualan(id_penjualan, id_buku, jumlah) VALUES($lastIdPenjualan, " . $id[$i] . ", " . $jumlah[$i] . ")";
+            $database->modifikasi($query);
+        }
+
+        header('Location: index.php');
+        exit;
     }
 }
