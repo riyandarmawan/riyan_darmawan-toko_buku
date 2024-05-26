@@ -44,6 +44,26 @@ if (isset($_POST['submit'])) {
                     <textarea type="text" id="total" name="total" readonly rows="2" class="form-control resize-none"></textarea>
                 </div>
             </div>
+
+            <!-- Bayar -->
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                    <label for="bayar" class="col-form-label">Bayar</label>
+                </div>
+                <div class="col-auto">
+                    <textarea type="number" id="bayar" name="bayar" rows="2" class="form-control resize-none"></textarea>
+                </div>
+            </div>
+
+            <!-- Kembalian -->
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                    <label for="kembalian" class="col-form-label">Kembalian</label>
+                </div>
+                <div class="col-auto">
+                    <textarea type="text" id="kembalian" name="kembalian" readonly rows="2" class="form-control resize-none"></textarea>
+                </div>
+            </div>
         </div>
 
         <!-- input for books -->
@@ -154,6 +174,13 @@ if (isset($_POST['submit'])) {
             row.querySelector('.sub-total').value = calculateSubTotal(price, amount, discount);
             updateTotal(); // Update total after recalculating subtotal
         }
+    });
+
+    const bayar = document.getElementById('bayar');
+    const kembalian = document.getElementById('kembalian');
+
+    bayar.addEventListener('keyup', () => {
+        kembalian.value = parseInt(total.value) - parseInt(bayar.value);
     });
 </script>
 
