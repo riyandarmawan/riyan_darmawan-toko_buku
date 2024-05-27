@@ -147,8 +147,7 @@ if (isset($_POST['submit'])) {
 
         if (event.target.classList.contains('id')) {
             const bookId = event.target.value;
-            const bookIndex = books.findIndex(e => e.id_buku === bookId);
-
+            
             if (bookIndex !== -1) {
                 // Populate input fields with book information
                 row.querySelector('.title').value = books[bookIndex].judul;

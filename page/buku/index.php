@@ -59,7 +59,7 @@ $mundur = $halaman - 1;
                 <td><?= $book['harga_jual'] ?></td>
                 <td>
                     <a href="#" class="text-success">Edit</a>
-                    <a href="#" class="text-danger">Hapus</a>
+                    <a href="buku/hapus.php?id=<?= $book['id_buku'] ?>" class="text-danger">Hapus</a>
                 </td>
             </tr>
         <?php
