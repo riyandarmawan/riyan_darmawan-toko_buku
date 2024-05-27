@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
 
 <?php require_once '../../layout/header.php'; ?>
 
-<div class="border rounded-md px-10 py-4 max-h-[30rem] overflow-y-scroll mx-auto">
+<div class="border rounded-md px-10 py-4 overflow-y-scroll mx-auto">
     <form action="" method="post">
         <div class="flex justify-between mb-4">
             <!-- tanggal -->
