@@ -4,8 +4,6 @@ require_once '../../config/Database.php';
 
 class PenjualanController
 {
-    private $table = 'penjualan';
-
     public function getBooks()
     {
         $database = new Database();
